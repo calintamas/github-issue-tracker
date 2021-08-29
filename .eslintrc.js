@@ -1,7 +1,21 @@
 module.exports = {
   root: true,
-  extends: ['backpacker-react', 'plugin:import/typescript'],
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'backpacker-react',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript'
+  ],
+  plugins: ['@typescript-eslint'],
   rules: {
+    camelcase: 'off',
+
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+
     // https://stackoverflow.com/a/59268871
     'import/extensions': [
       'error',
