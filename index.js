@@ -1,6 +1,4 @@
-/**
- * @format
- */
+import './src/i18n/setup';
 
 import { AppRegistry } from 'react-native';
 

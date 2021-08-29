@@ -1,7 +1,4 @@
-const config = {
-  DEFAULT_THEME: 'base'
-};
+const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_THEME = 'base';
 
-const { DEFAULT_THEME } = config;
-
-export { DEFAULT_THEME };
+export { DEFAULT_THEME, DEFAULT_LANGUAGE };

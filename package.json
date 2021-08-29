@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "@backpacker/primitives": "^3.0.1",
+    "i18next": "^20.4.0",
     "react": "17.0.2",
+    "react-i18next": "^11.11.4",
     "react-native": "0.65.1"
   },
   "devDependencies": {
