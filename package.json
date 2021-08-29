@@ -9,8 +9,9 @@
     "test": "./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint .  --ext .js,.jsx,.ts,.tsx",
     "lint-staged": "./node_modules/.bin/lint-staged",
-    "prettier": "./node_modules/.bin/prettier --write",
-    "menu": "adb shell input keyevent KEYCODE_MENU"
+    "prettier": "./node_modules/.bin/prettier --write '**/*.{js,jsx,ts,tsx,md}'",
+    "menu": "adb shell input keyevent KEYCODE_MENU",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "17.0.2",
@@ -25,8 +26,14 @@
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^26.6.3",
     "eslint": "^7.14.0",
+    "eslint-config-backpacker-react": "^0.5.0",
+    "husky": ">=6",
+    "import-sort-style-module": "^6.0.0",
     "jest": "^26.6.3",
+    "lint-staged": ">=10",
     "metro-react-native-babel-preset": "^0.66.0",
+    "prettier": "^2.3.2",
+    "prettier-plugin-import-sort": "^0.0.7",
     "react-native-codegen": "^0.0.7",
     "react-test-renderer": "17.0.2",
     "typescript": "^3.8.3"
@@ -44,5 +51,14 @@
       "json",
       "node"
     ]
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md}": "./node_modules/.bin/prettier --write",
+    "*.{js,jsx,ts,tsx}": "./node_modules/.bin/eslint --fix"
   }
 }
