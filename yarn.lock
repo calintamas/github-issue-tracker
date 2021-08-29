@@ -757,6 +757,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@backpacker/primitives@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@backpacker/primitives/-/primitives-3.0.1.tgz#4e2638f12be0dc9ae321ba4ddf47548df068c2e6"
+  integrity sha512-RYh9UEjY1nFeUGVOCFqlYSgqvZKlb4koAInzO+wmInoNeuHCTMepWfy6MYDpFsilICxL3+6TMB18CtwGV+1pAA==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
