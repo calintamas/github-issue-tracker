@@ -25,7 +25,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "@types/jest": "^26.0.23",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@types/jest": "^27.0.1",
     "@types/react-native": "^0.64.5",
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
@@ -42,6 +43,7 @@
     "prettier-plugin-import-sort": "^0.0.7",
     "react-native-codegen": "^0.0.7",
     "react-test-renderer": "17.0.2",
+    "ts-jest": "^27.0.5",
     "typescript": "^3.8.3"
   },
   "resolutions": {

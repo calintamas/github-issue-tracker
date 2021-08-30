@@ -2,11 +2,13 @@ import { ERROR_CODES } from '../config';
 import { AppError } from '../utils/app-error';
 import { githubProvider } from './providers';
 
+export type RepositoryIssueStatus = 'open' | 'closed' | 'all';
+
 // https://docs.github.com/en/rest/reference/issues#list-repository-issues--parameters
-type RepositoryIssue = {
+export type RepositoryIssue = {
   created_at: string;
   updated_at: string;
-  state: 'open | closed | all';
+  state: RepositoryIssueStatus;
   title: string;
   url: string;
   number: number;
@@ -19,10 +21,11 @@ type ClientError = {
 };
 
 export type RepositoryIssuesParams = {
-  owner: string;
-  repo: string;
+  owner?: string;
+  repo?: string;
   page?: number;
-  per_page?: number;
+  perPage?: number;
+  status?: RepositoryIssueStatus;
 };
 
 export type RepositoryIssues = Promise<RepositoryIssue[]>;
@@ -31,11 +34,13 @@ async function getRepositoryIssues({
   owner,
   repo,
   page = 1,
-  per_page = 30
+  perPage = 30,
+  status = 'all'
 }: RepositoryIssuesParams): RepositoryIssues {
   const res = await githubProvider.get(`/repos/${owner}/${repo}/issues`, {
     page,
-    per_page
+    per_page: perPage,
+    state: status
   });
 
   if (!res.ok) {
