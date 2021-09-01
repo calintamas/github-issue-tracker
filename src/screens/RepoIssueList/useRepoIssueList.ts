@@ -12,6 +12,8 @@ export type RepoIssueFilters = {
   status?: RepositoryIssueStatus;
 };
 
+const INITIAL_PAGE = 1;
+
 function useRepoIssueList(initialFilters: RepoIssueFilters) {
   const { getRepositoryIssues } = useGithubApiContext();
 
@@ -21,7 +23,7 @@ function useRepoIssueList(initialFilters: RepoIssueFilters) {
   const loadNextPage = React.useCallback(() => {
     setFilters(
       {
-        page: (filters.page ?? 1) + 1
+        page: (filters.page ?? INITIAL_PAGE) + 1
       },
       'loadMore'
     );
@@ -30,25 +32,28 @@ function useRepoIssueList(initialFilters: RepoIssueFilters) {
   const refreshIssues = React.useCallback(() => {
     setFilters({
       ...filters,
-      page: 1
+      page: INITIAL_PAGE
     });
   }, [filters, setFilters]);
 
   const showAllIssues = React.useCallback(() => {
     setFilters({
-      status: 'all'
+      status: 'all',
+      page: INITIAL_PAGE
     });
   }, [setFilters]);
 
   const showClosedIssues = React.useCallback(() => {
     setFilters({
-      status: 'closed'
+      status: 'closed',
+      page: INITIAL_PAGE
     });
   }, [setFilters]);
 
   const showOpenIssues = React.useCallback(() => {
     setFilters({
-      status: 'open'
+      status: 'open',
+      page: INITIAL_PAGE
     });
   }, [setFilters]);
 

@@ -15,12 +15,18 @@
   },
   "dependencies": {
     "@backpacker/primitives": "^3.0.1",
+    "@react-navigation/bottom-tabs": "^6.0.5",
+    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/stack": "^6.0.7",
     "apisauce": "^2.1.1",
     "i18next": "^20.4.0",
     "react": "17.0.2",
     "react-i18next": "^11.11.4",
     "react-native": "0.65.1",
-    "react-native-logs": "^3.0.4"
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-logs": "^3.0.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

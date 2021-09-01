@@ -1,3 +1,6 @@
 {
-  "home": "Home"
+  "home": "Home",
+  "repositories": "Repositories",
+  "repos": "Repos",
+  "add_a_new_repo": "Add a new repo"
 }
