@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { RepositoryIssueStatus } from '../../api';
-import { useGithubApi } from '../../contexts/GithubApi';
+import { useGithubApiContext } from '../../contexts/GithubApi';
 import { useFilterList } from '../../hooks/useFilterList';
 
 export type RepoIssueFilters = {
@@ -13,7 +13,7 @@ export type RepoIssueFilters = {
 };
 
 function useRepoIssueList(initialFilters: RepoIssueFilters) {
-  const { getRepositoryIssues } = useGithubApi();
+  const { getRepositoryIssues } = useGithubApiContext();
 
   const { setFilters, filters, data, isLoadingMoreData, isRefreshingData } =
     useFilterList(getRepositoryIssues, initialFilters);

@@ -4,7 +4,7 @@ import { LogBox } from 'react-native';
 
 import { getRepoIssueByNumber, getRepositoryIssues } from './api';
 import { DEFAULT_THEME } from './config';
-import { GithubApiProvider } from './contexts';
+import { BookmarksProvider, GithubApiProvider } from './contexts';
 import { RepoIssueDetails } from './screens/RepoIssueDetails';
 // import { RepoIssueList } from './screens/RepoIssueList';
 import { themeConfig } from './theme';
@@ -17,8 +17,10 @@ function Root(): JSX.Element {
       <GithubApiProvider
         getRepositoryIssues={getRepositoryIssues}
         getRepoIssueByNumber={getRepoIssueByNumber}>
-        {/* <RepoIssueList /> */}
-        <RepoIssueDetails />
+        <BookmarksProvider>
+          {/* <RepoIssueList /> */}
+          <RepoIssueDetails />
+        </BookmarksProvider>
       </GithubApiProvider>
     </ConfigProvider>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGithubApi } from '../../contexts';
+import { useGithubApiContext } from '../../contexts';
 import { useDataFetcher } from '../../hooks/useDataFetcher';
 
 export type RepoIssueArgs = {
@@ -10,7 +10,7 @@ export type RepoIssueArgs = {
 };
 
 function useRepoIssueDetails({ owner, repo, issueNumber }: RepoIssueArgs) {
-  const { getRepoIssueByNumber } = useGithubApi();
+  const { getRepoIssueByNumber } = useGithubApiContext();
 
   const fetcher = React.useCallback(
     () =>

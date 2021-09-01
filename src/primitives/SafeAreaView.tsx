@@ -1,8 +1,10 @@
 import React from 'react';
 import { SafeAreaView, ViewStyle } from 'react-native';
 
+import { ReactChildren } from '../types';
+
 export type SafeAreaViewProps = {
-  children: React.ReactNode;
+  children: ReactChildren;
   style?: ViewStyle;
 };
 

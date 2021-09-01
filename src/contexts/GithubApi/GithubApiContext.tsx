@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { GithubIssuesApi } from '../../api';
+import { ReactChildren } from '../../types';
 
 export type GithubApiContextType = GithubIssuesApi;
 
 const GithubApiContext = React.createContext<GithubApiContextType | null>(null);
 
 export type GithubApiContextProviderProps = {
-  children: React.ReactNode;
+  children: ReactChildren;
 } & GithubApiContextType;
 
 function GithubApiProvider({
@@ -21,12 +22,14 @@ function GithubApiProvider({
   );
 }
 
-function useGithubApi(): GithubApiContextType {
+function useGithubApiContext(): GithubApiContextType {
   const ctx = React.useContext(GithubApiContext);
   if (!ctx) {
-    throw new Error(`useGithubApi() must be called within GithubApiContext`);
+    throw new Error(
+      `useGithubApiContext() must be called within GithubApiContext`
+    );
   }
   return ctx;
 }
 
-export { GithubApiProvider, useGithubApi };
+export { GithubApiProvider, useGithubApiContext };
