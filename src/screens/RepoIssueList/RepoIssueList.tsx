@@ -1,9 +1,9 @@
 import React from 'react';
 import { ActivityIndicator, Button, FlatList } from 'react-native';
 
-import { RepositoryIssue } from './api';
-import { RepoIssueFilters, useRepoIssueList } from './hooks';
-import { Column, Row, SafeAreaView, Spacer, Text } from './primitives';
+import { RepositoryIssue } from '../../api';
+import { Column, Row, SafeAreaView, Spacer, Text } from '../../primitives';
+import { RepoIssueFilters, useRepoIssueList } from './useRepoIssueList';
 
 const initialFilters: RepoIssueFilters = {
   owner: 'facebook',
@@ -13,7 +13,7 @@ const initialFilters: RepoIssueFilters = {
   status: 'open'
 };
 
-function App(): JSX.Element {
+function RepoIssueList(): JSX.Element {
   const {
     data,
     filters,
@@ -75,4 +75,4 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export { RepoIssueList };

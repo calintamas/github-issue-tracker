@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { RepositoryIssueStatus } from '../api';
-import { useGithubApi } from '../contexts/GithubApi';
-import { useFilterList } from './useFilterList';
+import { RepositoryIssueStatus } from '../../api';
+import { useGithubApi } from '../../contexts/GithubApi';
+import { useFilterList } from '../../hooks/useFilterList';
 
 export type RepoIssueFilters = {
   owner?: string;

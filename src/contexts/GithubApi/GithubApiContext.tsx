@@ -12,14 +12,10 @@ export type GithubApiContextProviderProps = {
 
 function GithubApiProvider({
   children,
-  getRepositoryIssues
+  ...props
 }: GithubApiContextProviderProps): JSX.Element {
-  const value = {
-    getRepositoryIssues
-  };
-
   return (
-    <GithubApiContext.Provider value={value}>
+    <GithubApiContext.Provider value={props}>
       {children}
     </GithubApiContext.Provider>
   );
