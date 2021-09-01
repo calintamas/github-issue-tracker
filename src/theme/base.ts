@@ -7,8 +7,10 @@ const colorTokens = {
   brand: colors.blue[500],
   neutral: colors.gray[500],
   text: colors.black[100],
+  invertedText: colors.gray[100],
   surface: colors.gray[100],
-  background: colors.gray[200]
+  background: colors.gray[200],
+  red: colors.red[500]
 };
 
 const textVariants = {

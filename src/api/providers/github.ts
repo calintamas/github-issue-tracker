@@ -20,4 +20,9 @@ function createGithubProvider() {
 
 const githubProvider = createGithubProvider();
 
+// https://docs.github.com/en/rest/overview/resources-in-the-rest-api#client-errors
+export type GithubClientError = {
+  message?: string;
+};
+
 export { githubProvider };

@@ -1,6 +1,6 @@
 import { ERROR_CODES } from '../config';
 import { AppError } from '../utils/app-error';
-import { githubProvider } from './providers';
+import { GithubClientError, githubProvider } from './providers';
 
 export type RepositoryIssueStatus = 'open' | 'closed' | 'all';
 
@@ -16,11 +16,6 @@ export type RepositoryIssue = {
   comments: number;
 };
 
-// https://docs.github.com/en/rest/overview/resources-in-the-rest-api#client-errors
-type ClientError = {
-  message?: string;
-};
-
 export type GetRepositoryIssuesArgs = {
   owner?: string;
   repo?: string;
@@ -30,7 +25,7 @@ export type GetRepositoryIssuesArgs = {
 };
 
 // https://docs.github.com/en/rest/reference/issues#list-repository-issues
-async function getRepositoryIssues({
+export async function getRepositoryIssues({
   owner,
   repo,
   page = 1,
@@ -44,7 +39,7 @@ async function getRepositoryIssues({
   });
 
   if (!res.ok) {
-    const { message } = (res.data as ClientError) ?? {};
+    const { message } = (res.data as GithubClientError) ?? {};
     throw new AppError(ERROR_CODES.getRepositoryIssues, message);
   }
 
@@ -58,7 +53,7 @@ type GetRepoIssueByNumberArgs = {
 };
 
 // https://docs.github.com/en/rest/reference/issues#get-an-issue
-async function getRepoIssueByNumber({
+export async function getRepoIssueByNumber({
   owner,
   repo,
   issueNumber
@@ -68,8 +63,8 @@ async function getRepoIssueByNumber({
   );
 
   if (!res.ok) {
-    const { message } = (res.data as ClientError) ?? {};
-    throw new AppError(ERROR_CODES.getRepositoryIssues, message);
+    const { message } = (res.data as GithubClientError) ?? {};
+    throw new AppError(ERROR_CODES.getRepoIssueByNumber, message);
   }
 
   return res.data as RepositoryIssue;
@@ -83,5 +78,3 @@ export type GithubIssuesApi = {
     args: GetRepoIssueByNumberArgs
   ) => Promise<RepositoryIssue>;
 };
-
-export { getRepositoryIssues, getRepoIssueByNumber };

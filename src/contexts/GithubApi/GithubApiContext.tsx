@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { GithubIssuesApi } from '../../api';
+import { GithubIssuesApi, GithubReposApi } from '../../api';
 import { ReactChildren } from '../../types';
 
-export type GithubApiContextType = GithubIssuesApi;
+export type GithubApiContextType = GithubIssuesApi & GithubReposApi;
 
 const GithubApiContext = React.createContext<GithubApiContextType | null>(null);
 

@@ -1,7 +1,6 @@
 /* eslint-env jest */
 
-import { renderHook } from '@testing-library/react-hooks';
-import { act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-hooks';
 
 import { useDataFetcher } from '../useDataFetcher';
 

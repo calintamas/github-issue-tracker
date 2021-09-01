@@ -2,5 +2,8 @@
   "home": "Home",
   "repositories": "Repositories",
   "repos": "Repos",
-  "add_a_new_repo": "Add a new repo"
+  "add_a_new_repo": "Add a new repo",
+  "add_repo": "Add repo",
+  "repository_name": "Repository name",
+  "repository_owner": "Repository owner"
 }

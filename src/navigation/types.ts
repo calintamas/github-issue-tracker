@@ -1,5 +1,5 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 
 export type HomeStackParamList = {
   Home: undefined;
@@ -36,4 +36,9 @@ export type HomeNavigationProp = StackNavigationProp<
 export type AddRepoStackNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddRepoStack'
+>;
+
+export type RepoIssueListScreenProps = StackScreenProps<
+  HomeStackParamList,
+  'RepoIssueList'
 >;

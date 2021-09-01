@@ -2,21 +2,19 @@ import React from 'react';
 import { ActivityIndicator, Button, FlatList } from 'react-native';
 
 import { RepositoryIssue } from '../../api';
+import { RepoIssueListScreenProps } from '../../navigation/types';
 import { Column, Row, SafeAreaView, Spacer, Text } from '../../primitives';
 import { RepoIssueFilters, useRepoIssueList } from './useRepoIssueList';
 
 const initialFilters: RepoIssueFilters = {
-  owner: 'facebook',
-  repo: 'react',
   page: 1,
   perPage: 30,
   status: 'open'
 };
 
-function RepoIssueList(): JSX.Element {
+function RepoIssueList({ route }: RepoIssueListScreenProps): JSX.Element {
   const {
     data,
-    filters,
     loadNextPage,
     isLoadingMoreData,
     isRefreshingData,
@@ -24,7 +22,11 @@ function RepoIssueList(): JSX.Element {
     showClosedIssues,
     showOpenIssues,
     refreshIssues
-  } = useRepoIssueList(initialFilters);
+  } = useRepoIssueList({
+    ...initialFilters,
+    owner: route.params.owner,
+    repo: route.params.repo
+  });
 
   const renderItem = React.useCallback(({ item }) => {
     const { number, title, state } = item as RepositoryIssue;
@@ -41,16 +43,8 @@ function RepoIssueList(): JSX.Element {
   }, []);
 
   const onEndReached = React.useCallback(() => {
-    console.log('onEndReached');
     loadNextPage();
   }, [loadNextPage]);
-
-  console.log({
-    data,
-    filters,
-    isRefreshingData,
-    isLoadingMoreData
-  });
 
   return (
     <SafeAreaView>
