@@ -8,14 +8,14 @@ import { Column, SafeAreaView, Text } from '../../primitives';
 import { useRepoIssueDetails } from './useRepoIssueDetails';
 
 function RepoIssueDetails({ route }: RepoIssueDetailsScreenProps) {
-  const { issueNumber } = route.params;
+  const { owner, repo, issueId } = route.params;
 
   const { data, loading, err } = useRepoIssueDetails(route.params);
   const { isBookmarked, addBookmark, removeBookmark } = useBookmarksContext();
 
   const isIssueBookmarked = React.useMemo(
-    () => isBookmarked(issueNumber),
-    [isBookmarked, issueNumber]
+    () => isBookmarked(issueId),
+    [isBookmarked, issueId]
   );
 
   const toggleBookmark = React.useCallback(() => {
@@ -23,11 +23,23 @@ function RepoIssueDetails({ route }: RepoIssueDetailsScreenProps) {
       return;
     }
     if (isIssueBookmarked) {
-      removeBookmark(issueNumber);
+      removeBookmark(issueId);
     } else {
-      addBookmark(data);
+      addBookmark({
+        ...data,
+        owner,
+        repo
+      });
     }
-  }, [addBookmark, data, isIssueBookmarked, issueNumber, removeBookmark]);
+  }, [
+    addBookmark,
+    data,
+    isIssueBookmarked,
+    issueId,
+    owner,
+    removeBookmark,
+    repo
+  ]);
 
   if (loading) {
     return (

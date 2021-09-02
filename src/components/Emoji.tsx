@@ -8,7 +8,9 @@ export type EmojiName =
   | 'yellow-heart'
   | 'white-heart'
   | 'green-circle'
-  | 'red-circle';
+  | 'red-circle'
+  | 'house'
+  | 'bookmarks';
 
 type EmojiProps = {
   name: EmojiName;
@@ -33,6 +35,12 @@ function getEmojiFor(name: EmojiName): string {
 
     case 'speech-baloon':
       return '💬';
+
+    case 'house':
+      return '🏠';
+
+    case 'bookmarks':
+      return '🔖';
 
     default:
       throw new Error(`Icon ${name} not supported`);

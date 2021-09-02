@@ -2,22 +2,27 @@ import React from 'react';
 
 import { RepositoryIssue } from '../../api';
 
-function useBookmarks() {
-  const [bookmarks, setBookmarks] = React.useState<RepositoryIssue[]>([]);
+export type BookmarkedRepoIssue = RepositoryIssue & {
+  owner: string;
+  repo: string;
+};
 
-  const addBookmark = React.useCallback((repoIssue: RepositoryIssue) => {
+function useBookmarks() {
+  const [bookmarks, setBookmarks] = React.useState<BookmarkedRepoIssue[]>([]);
+
+  const addBookmark = React.useCallback((repoIssue: BookmarkedRepoIssue) => {
     setBookmarks((prevBookmarks) => [...prevBookmarks, repoIssue]);
   }, []);
 
-  const removeBookmark = React.useCallback((repoIssueNumber: number) => {
+  const removeBookmark = React.useCallback((issueId: number) => {
     setBookmarks((prevBookmarks) =>
-      prevBookmarks.filter((repoIssue) => repoIssue.number !== repoIssueNumber)
+      prevBookmarks.filter((repoIssue) => repoIssue.id !== issueId)
     );
   }, []);
 
   const isBookmarked = React.useCallback(
-    (repoIssueNumber: number) =>
-      !!bookmarks.find((repoIssue) => repoIssue.number === repoIssueNumber),
+    (issueId: number) =>
+      !!bookmarks.find((repoIssue) => repoIssue.id === issueId),
     [bookmarks]
   );
 

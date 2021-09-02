@@ -9,7 +9,7 @@ function createGithubProvider() {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/vnd.github.v3+json',
-      Authorization: `token ${GITHUB_TOKEN}`
+      ...(GITHUB_TOKEN ? { Authorization: `token ${GITHUB_TOKEN}` } : {})
     },
     timeout: REQUEST_TIMEOUT
   });

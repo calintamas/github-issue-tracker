@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
+import { Emoji } from '../components/Emoji';
 import { useTranslation } from '../i18n';
 import { BookmarksStack, HomeStack } from './stacks';
 
@@ -18,14 +19,16 @@ function BottomTabNavigator() {
         name='HomeStack'
         component={HomeStack}
         options={{
-          tabBarLabel: t('repositories')
+          tabBarLabel: t('repos'),
+          tabBarIcon: () => <Emoji name='house' />
         }}
       />
       <Tab.Screen
         name='BookmarksStack'
         component={BookmarksStack}
         options={{
-          tabBarLabel: t('bookmarks')
+          tabBarLabel: t('bookmarks'),
+          tabBarIcon: () => <Emoji name='bookmarks' />
         }}
       />
     </Tab.Navigator>

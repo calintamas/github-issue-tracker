@@ -14,6 +14,7 @@ export type RepositoryIssue = {
   url: string;
   number: number;
   comments: number;
+  id: number;
 };
 
 export type GetRepositoryIssuesArgs = {

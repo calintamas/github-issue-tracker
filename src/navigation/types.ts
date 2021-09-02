@@ -11,6 +11,7 @@ export type HomeStackParamList = {
     owner: string;
     repo: string;
     issueNumber: number;
+    issueId: number;
   };
 };
 

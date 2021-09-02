@@ -17,7 +17,6 @@ function HomeStack() {
         name='Home'
         component={Home}
         options={{
-          headerShown: false,
           title: t('repos')
         }}
       />

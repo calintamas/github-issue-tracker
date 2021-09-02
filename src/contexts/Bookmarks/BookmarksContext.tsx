@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { RepositoryIssue } from '../../api';
 import { ReactChildren } from '../../types';
-import { useBookmarks } from './useBookmarks';
+import { BookmarkedRepoIssue, useBookmarks } from './useBookmarks';
 
-type BookmarksContextType = {
-  bookmarks: RepositoryIssue[];
-  addBookmark: (repoIssue: RepositoryIssue) => void;
+export type BookmarksContextType = {
+  bookmarks: BookmarkedRepoIssue[];
+  addBookmark: (repoIssue: BookmarkedRepoIssue) => void;
   removeBookmark: (repoIssueNumber: number) => void;
   isBookmarked: (repoIssueNumber: number) => boolean;
 };

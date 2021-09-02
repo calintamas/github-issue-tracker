@@ -2,10 +2,10 @@
 
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { RepositoryIssue } from '../../../api';
-import { useBookmarks } from '../useBookmarks';
+import { BookmarkedRepoIssue, useBookmarks } from '../useBookmarks';
 
-const mockRepoIssue: RepositoryIssue = {
+const mockRepoIssue: BookmarkedRepoIssue = {
+  id: 10,
   created_at: 'mock-created-at',
   updated_at: 'mock-updated-at',
   state: 'open',
@@ -13,7 +13,9 @@ const mockRepoIssue: RepositoryIssue = {
   body: 'This is a mock issue',
   url: 'http://mock-url',
   number: 120,
-  comments: 0
+  comments: 0,
+  owner: 'mock-owner',
+  repo: 'mock-repo'
 };
 
 const setup = () => {
@@ -47,7 +49,7 @@ describe('test useBookmarks hook', () => {
     expect(result.current.bookmarks).toEqual([mockRepoIssue]);
 
     act(() => {
-      result.current.removeBookmark(mockRepoIssue.number);
+      result.current.removeBookmark(mockRepoIssue.id);
     });
     expect(result.current.bookmarks).toEqual([]);
   });
@@ -58,12 +60,12 @@ describe('test useBookmarks hook', () => {
     act(() => {
       result.current.addBookmark(mockRepoIssue);
     });
-    expect(result.current.isBookmarked(mockRepoIssue.number)).toBe(true);
+    expect(result.current.isBookmarked(mockRepoIssue.id)).toBe(true);
   });
 
   it('returns false if RepoIssue is NOT bookmarked', () => {
     const { result } = setup();
 
-    expect(result.current.isBookmarked(mockRepoIssue.number)).toBe(false);
+    expect(result.current.isBookmarked(mockRepoIssue.id)).toBe(false);
   });
 });

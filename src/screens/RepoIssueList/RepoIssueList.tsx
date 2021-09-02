@@ -60,16 +60,17 @@ function RepoIssueList({
 
   const renderItem = React.useCallback(
     ({ item }) => {
-      const { number, title, state, comments, created_at } =
+      const { number, title, state, comments, created_at, id } =
         item as RepositoryIssue;
       const onPress = () =>
         navigation.navigate('RepoIssueDetails', {
           owner,
           repo,
-          issueNumber: number
+          issueNumber: number,
+          issueId: id
         });
       return (
-        <Touchable key={`${number}`} onPress={onPress}>
+        <Touchable key={`${id}`} onPress={onPress}>
           <RepoIssueCard
             owner={owner}
             repo={repo}
@@ -78,7 +79,7 @@ function RepoIssueList({
             createdAt={created_at}
             status={state}
             number={number}
-            isHighlighted={isBookmarked(number)}
+            isHighlighted={isBookmarked(id)}
           />
         </Touchable>
       );
@@ -92,7 +93,7 @@ function RepoIssueList({
 
   const renderHeader = React.useCallback(
     () => (
-      <Column padding={padding}>
+      <Column padding={padding} backgroundColor={colors.surface}>
         <Text variant='title1' semibold>
           {t('issues')}
         </Text>
@@ -113,6 +114,7 @@ function RepoIssueList({
       </Column>
     ),
     [
+      colors.surface,
       filters.status,
       padding,
       showAllIssues,
@@ -123,10 +125,7 @@ function RepoIssueList({
   );
 
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: colors.surface
-      }}>
+    <SafeAreaView>
       <FlatList
         onRefresh={refreshIssues}
         refreshing={isRefreshingData}
