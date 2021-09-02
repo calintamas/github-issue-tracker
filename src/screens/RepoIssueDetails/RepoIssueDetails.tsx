@@ -1,14 +1,15 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 
 import { IconButton } from '../../components/IconButton';
 import { useBookmarksContext } from '../../contexts';
 import { RepoIssueDetailsScreenProps } from '../../navigation/types';
-import { Column, SafeAreaView, Text } from '../../primitives';
+import { Column, SafeAreaView, Spacer, Text, useTheme } from '../../primitives';
 import { useRepoIssueDetails } from './useRepoIssueDetails';
 
-function RepoIssueDetails({ route }: RepoIssueDetailsScreenProps) {
-  const { owner, repo, issueId } = route.params;
+function RepoIssueDetails({ route, navigation }: RepoIssueDetailsScreenProps) {
+  const { colors, padding } = useTheme().theme;
+  const { owner, repo, issueId, issueNumber } = route.params;
 
   const { data, loading, err } = useRepoIssueDetails(route.params);
   const { isBookmarked, addBookmark, removeBookmark } = useBookmarksContext();
@@ -41,6 +42,23 @@ function RepoIssueDetails({ route }: RepoIssueDetailsScreenProps) {
     repo
   ]);
 
+  const renderRightHeader = React.useCallback(
+    () => (
+      <IconButton
+        name={isIssueBookmarked ? 'yellow-heart' : 'white-heart'}
+        onPress={toggleBookmark}
+      />
+    ),
+    [toggleBookmark, isIssueBookmarked]
+  );
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: renderRightHeader,
+      title: `#${issueNumber}`
+    });
+  }, [issueNumber, navigation, renderRightHeader]);
+
   if (loading) {
     return (
       <Column flex={1} center>
@@ -49,25 +67,27 @@ function RepoIssueDetails({ route }: RepoIssueDetailsScreenProps) {
     );
   }
 
-  if (err) {
+  if (err || !data) {
     return (
       <Column flex={1} center>
-        <Text>{`${err.message}`}</Text>
+        <Text>{`${err?.message}`}</Text>
       </Column>
     );
   }
 
   return (
     <SafeAreaView>
-      <Column flex={1} center>
-        <IconButton
-          name={isIssueBookmarked ? 'yellow-heart' : 'white-heart'}
-          onPress={toggleBookmark}
-        />
-        <Text variant='title1'>{data?.title}</Text>
-        <Text variant='body'>{data?.body}</Text>
-        <Text>{data?.number}</Text>
-      </Column>
+      <ScrollView
+        contentContainerStyle={{
+          padding,
+          backgroundColor: colors.surface
+        }}>
+        <Text variant='title1'>{data.title}</Text>
+        <Spacer size={2} />
+        <Text variant='body' color={colors.text}>
+          {data.body}
+        </Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }

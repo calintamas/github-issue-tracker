@@ -32,10 +32,7 @@ function Home({ navigation }: HomeProps) {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: renderHeaderRight,
-      headerRightContainerStyle: {
-        paddingHorizontal: 10
-      }
+      headerRight: renderHeaderRight
     });
   }, [navigation, renderHeaderRight]);
 
