@@ -1,25 +1,17 @@
 import React from 'react';
 
-import { Text, Touchable } from '../primitives';
+import { Touchable } from '../primitives';
+import { Emoji, EmojiName } from './Emoji';
 
 export type IconButtonProps = {
-  name: 'plus';
+  name: EmojiName;
   onPress?: () => void;
 };
-
-function getIcon(name: IconButtonProps['name']): string {
-  switch (name) {
-    case 'plus':
-      return '➕';
-    default:
-      throw new Error(`Icon ${name} not supported`);
-  }
-}
 
 function IconButton({ name, onPress }: IconButtonProps) {
   return (
     <Touchable onPress={onPress} padding={5}>
-      <Text>{getIcon(name)}</Text>
+      <Emoji name={name} />
     </Touchable>
   );
 }

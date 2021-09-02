@@ -8,7 +8,9 @@
 
 const colors = {
   blue: {
-    500: '#4078c0'
+    200: '#DEECFD',
+    300: '#2B64CF',
+    500: '#2B64CF'
   },
   gray: {
     100: '#fff',
@@ -20,6 +22,9 @@ const colors = {
   },
   red: {
     500: '#FF3333'
+  },
+  yellow: {
+    300: '#fcf4c0'
   }
 };
 

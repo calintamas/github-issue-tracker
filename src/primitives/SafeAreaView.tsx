@@ -22,4 +22,4 @@ function SafeAreaViewWrapper({ style, children }: SafeAreaViewProps) {
   );
 }
 
-export default SafeAreaViewWrapper;
+export { SafeAreaViewWrapper as SafeAreaView };

@@ -1,6 +1,6 @@
 import { create } from 'apisauce';
 
-import { GITHUB_HOST, REQUEST_TIMEOUT } from '../../config';
+import { GITHUB_HOST, GITHUB_TOKEN, REQUEST_TIMEOUT } from '../../config';
 import { logger } from '../../utils/logger';
 
 function createGithubProvider() {
@@ -8,7 +8,8 @@ function createGithubProvider() {
     baseURL: GITHUB_HOST,
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/vnd.github.v3+json'
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `token ${GITHUB_TOKEN}`
     },
     timeout: REQUEST_TIMEOUT
   });

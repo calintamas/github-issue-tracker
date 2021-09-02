@@ -7,7 +7,11 @@ export type HomeStackParamList = {
     owner: string;
     repo: string;
   };
-  RepoIssueDetails: undefined;
+  RepoIssueDetails: {
+    owner: string;
+    repo: string;
+    issueNumber: number;
+  };
 };
 
 export type BookmarksStackParamList = {
@@ -41,4 +45,9 @@ export type AddRepoStackNavigationProp = StackNavigationProp<
 export type RepoIssueListScreenProps = StackScreenProps<
   HomeStackParamList,
   'RepoIssueList'
+>;
+
+export type RepoIssueDetailsScreenProps = StackScreenProps<
+  HomeStackParamList,
+  'RepoIssueDetails'
 >;

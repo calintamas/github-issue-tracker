@@ -5,12 +5,16 @@ import { colors } from './colors';
 // When creating a new theme, make sure to include all color tokens from this 'base' theme
 const colorTokens = {
   brand: colors.blue[500],
+  lightBrand: colors.blue[200],
+  lightBrandText: colors.blue[300],
   neutral: colors.gray[500],
   text: colors.black[100],
   invertedText: colors.gray[100],
   surface: colors.gray[100],
   background: colors.gray[200],
-  red: colors.red[500]
+  border: colors.gray[200],
+  red: colors.red[500],
+  highlight: colors.yellow[300]
 };
 
 const textVariants = {
@@ -30,7 +34,7 @@ const textVariants = {
     fontSize: 17
   },
   body: {
-    fontSize: 17
+    fontSize: 16
   },
   callout: {
     fontSize: 16

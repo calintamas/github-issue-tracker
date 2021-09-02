@@ -46,7 +46,7 @@ function Home({ navigation }: HomeProps) {
             {t('repositories')}
           </Text>
           <IconButton
-            name='plus'
+            name='heavy-plus-sign'
             onPress={() =>
               navigation.navigate('AddRepoStack', {
                 screen: 'AddRepo'
