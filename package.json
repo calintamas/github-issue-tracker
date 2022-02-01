@@ -45,7 +45,7 @@
     "eslint-config-backpacker-react": "^0.5.0",
     "husky": ">=6",
     "import-sort-style-module": "^6.0.0",
-    "jest": "^26.6.3",
+    "jest": "^27.4.7",
     "lint-staged": ">=10",
     "metro-react-native-babel-preset": "^0.66.0",
     "prettier": "^2.3.2",
